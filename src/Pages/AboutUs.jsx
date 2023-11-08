@@ -1,9 +1,6 @@
 import aboutMainImage from "../assets/images/aboutMainImage.png";
-import apj from "../assets/images/apj.png";
-import billGates from "../assets/images/billGates.png";
-import einstein from "../assets/images/einstein.png";
-import nelsonMandela from "../assets/images/nelsonMandela.png";
-import steveJobs from "../assets/images/steveJobs.png";
+import CarouselSlide from "../Components/CarouselSlide";
+import { celeb } from "../Constants/CelebData";
 import HomeLayout from "../Layouts/HomeLayout";
 
 function AboutUs() {
@@ -37,96 +34,14 @@ function AboutUs() {
         </div>
 
         <div className="carousel m-auto w-1/2 my-16">
-          <div id="slide1" className="carousel-item relative w-full">
-            <div className="flex flex-col items-center justify-center px-[15%] gap-4">
-              <img src={apj} className="w-full rounded-full" />
-              <p className="text-xl text-gray-200">
-                Teaching is a very noble profession that shapes the character,
-                caliber, and future of an individual.
-              </p>
-              <h3 className="text-2xl font-semibold">APJ Abdul Kalam</h3>
-              <div className="absolute flex justify-between transform -translate-y-1/2   top-[50%] left-5 right-5">
-                <a href="#slide5" className="btn btn-circle">
-                  ❮
-                </a>
-                <a href="#slide2" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-          </div>
-          <div id="slide2" className="carousel-item relative w-full">
-            <div className="flex flex-col items-center justify-center px-[15%] gap-4">
-              <img src={billGates} className="w-full rounded-full" />
-              <p className="text-xl text-gray-200">
-                Success is a lousy teacher. It seduces smart people into
-                thinking they can’t lose.
-              </p>
-              <h3 className="text-2xl font-semibold">Bill Gates</h3>
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide1" className="btn btn-circle ">
-                  ❮
-                </a>
-                <a href="#slide3" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-          </div>
-          <div id="slide3" className="carousel-item relative w-full">
-            <div className="flex flex-col items-center justify-center px-[15%] gap-4">
-              <img src={steveJobs} className="w-full rounded-full" />
-              <p className="text-xl text-gray-200">
-                We dont get a chance to do that many things, and every one
-                should be really excellent.
-              </p>
-              <h3 className="text-2xl font-semibold">Steve Jobs</h3>
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide2" className="btn btn-circle">
-                  ❮
-                </a>
-                <a href="#slide4" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-          </div>
-          <div id="slide4" className="carousel-item relative w-full">
-            <div className="flex flex-col items-center justify-center px-[15%] gap-4">
-              <img src={nelsonMandela} className="w-full rounded-full" />
-              <p className="text-xl text-gray-200">
-                Education is the most powerful tool you can use to change the
-                world.
-              </p>
-              <h3 className="text-2xl font-semibold">Nelson Mandela</h3>
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide3" className="btn btn-circle">
-                  ❮
-                </a>
-                <a href="#slide5" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-          </div>
-          <div id="slide5" className="carousel-item relative w-full">
-            <div className="flex flex-col items-center justify-center px-[15%] gap-4">
-              <img src={einstein} className="w-full rounded-full" />
-              <p className="text-xl text-gray-200">
-                Education is what remains after one has forgotten what one has
-                learned in school
-              </p>
-              <h3 className="text-2xl font-semibold">Albert Einstein</h3>
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide4" className="btn btn-circle">
-                  ❮
-                </a>
-                <a href="#slide1" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-          </div>
+          {celeb &&
+            celeb.map((singleCeleb) => (
+              <CarouselSlide
+                {...singleCeleb}
+                key={singleCeleb.slideNumber}
+                totalSlides={celeb.length}
+              />
+            ))}
         </div>
       </div>
     </HomeLayout>
