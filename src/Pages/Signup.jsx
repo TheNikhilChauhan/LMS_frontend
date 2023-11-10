@@ -69,15 +69,6 @@ function Signup() {
       toast.error("Invalid email id");
     }
 
-    //checking valid password
-    if (
-      !signupData.password.match(
-        /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/
-      )
-    ) {
-      toast.error("Invalid password");
-    }
-
     const formData = new FormData();
     formData.append("fullname", signupData.fullname);
     formData.append("email", signupData.email);
