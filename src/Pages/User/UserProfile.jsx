@@ -1,11 +1,21 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import HomeLayout from "../../Layouts/HomeLayout";
+import { getUserData } from "../../Redux/Slices/AuthSlice";
 
 function UserProfile() {
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state?.auth?.data);
 
+  async function getUser() {
+    await dispatch(getUserData());
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <HomeLayout>
       <div className="min-h-[90vh] flex items-center justify-center">
