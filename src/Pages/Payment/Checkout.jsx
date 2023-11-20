@@ -22,9 +22,9 @@ function Checkout() {
   console.log("Subs ID: ", subscription_id);
   const userData = useSelector((state) => state?.auth?.data);
 
-  const isPaymentVerified = useSelector((state) => {
+  /* const isPaymentVerified = useSelector((state) => {
     state?.razorpay?.isPaymentVerified;
-  });
+  }); */
 
   const paymentDetails = {
     razorpay_payment_id: "",
@@ -58,8 +58,9 @@ function Checkout() {
 
         toast.success("Payment successfull");
 
-        await dispatch(verifyUserPayment(paymentDetails));
-        !isPaymentVerified
+        const res = await dispatch(verifyUserPayment(paymentDetails));
+
+        res?.payload?.success
           ? navigate("/checkout/success")
           : navigate("/checkout/fail");
       },
