@@ -9,6 +9,7 @@ import CourseDescription from "./Pages/Course/CourseDescription";
 import CourseList from "./Pages/Course/CourseList";
 import CreateCourse from "./Pages/Course/CreateCourse";
 import Denied from "./Pages/Denied";
+import DisplayLectures from "./Pages/DisplayLectures";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout/success" element={<PaymentSuccess />} />
           <Route path="/checkout/fail" element={<PaymentFailure />} />
+          <Route path="/course/displayLectures" element={<DisplayLectures />} />
         </Route>
         <Route path="/denied" element={<Denied />}></Route>
         <Route path="*" element={<NotFound />}></Route>

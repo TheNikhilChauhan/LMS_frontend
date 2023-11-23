@@ -52,7 +52,7 @@ export const deleteCourseLecture = createAsyncThunk(
   async (data) => {
     try {
       const response = axiosInstance.delete(
-        `/course?courseId=${data.cid}&lectureId=${data.lectureId}`
+        `/course?courseId=${data.courseId}&lectureId=${data.lectureId}`
       );
       toast.promise(response, {
         loading: " Deleting course lecture",
@@ -72,11 +72,9 @@ const lectureSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCourseLectures.fulfilled, (state, action) => {
-        console.log(action);
         state.lectures = action?.payload?.lectures;
       })
       .addCase(addCourseLecture.fulfilled, (state, action) => {
-        console.log(action);
         state.lectures = action?.payload?.course?.lecture;
       });
   },
