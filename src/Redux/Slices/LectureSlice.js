@@ -30,16 +30,19 @@ export const addCourseLecture = createAsyncThunk(
   "/course/lectures/add",
   async (data) => {
     try {
-      const formData = new FormData();
+      let formData = new FormData();
+
       formData.append("lecture", data.lecture);
       formData.append("title", data.title);
       formData.append("description", data.description);
-      const response = axiosInstance.get(`/course/${data.cid}`);
+
+      const response = axiosInstance.post(`/course/${data.id}`, formData);
       toast.promise(response, {
         loading: " Adding course lectures",
         success: "Lectures added successfully",
         error: "Failed to add the lectures",
       });
+      return (await response).data;
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -75,7 +78,7 @@ const lectureSlice = createSlice({
         state.lectures = action?.payload?.lectures;
       })
       .addCase(addCourseLecture.fulfilled, (state, action) => {
-        state.lectures = action?.payload?.course?.lecture;
+        state.lectures = action?.payload?.course?.lectures;
       });
   },
 });
