@@ -24,7 +24,7 @@ function DisplayLectures() {
         lectureId: lectureId,
       })
     );
-    await getCourseLectures(cid);
+    await dispatch(getCourseLectures(cid));
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function DisplayLectures() {
             {/* Left section for videos , if admin then dispaly course details*/}
             <div className=" space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
               <video
-                src={lectures[currentVideo]?.lecture?.secure_url}
+                src={lectures[currentVideo]?.lectures?.secure_url}
                 className="object-fill rounded-tl-lg rounded-tr-lg w-full"
                 controls
                 disablePictureInPicture
@@ -78,30 +78,29 @@ function DisplayLectures() {
                   </button>
                 )}
               </li>
-              {lectures &&
-                lectures.map((lecture, index) => {
-                  return (
-                    <li className="space-y-2" key={lecture._id}>
-                      <p
-                        className="cursor-pointer"
-                        onClick={() => setCurrentVideo(index)}
+              {lectures.map((lecture, index) => {
+                return (
+                  <li className="space-y-2" key={lecture._id}>
+                    <p
+                      className="cursor-pointer"
+                      onClick={() => setCurrentVideo(index)}
+                    >
+                      <span> Lecture {index + 1} : </span>
+                      {lecture?.title}
+                    </p>
+                    {role === "ADMIN" && (
+                      <button
+                        onClick={() =>
+                          onLectureDelete(state?._id, lecture?._id)
+                        }
+                        className="btn-accent px-2 rounded-md py-1 font-semibold text-sm"
                       >
-                        <span> Lecture {index + 1} : </span>
-                        {lecture?.title}
-                      </p>
-                      {role === "ADMIN" && (
-                        <button
-                          onClick={() =>
-                            onLectureDelete(state?._id, lecture?._id)
-                          }
-                          className="btn-accent px-2 rounded-md py-1 font-semibold text-sm"
-                        >
-                          Delete lecture
-                        </button>
-                      )}
-                    </li>
-                  );
-                })}
+                        Delete lecture
+                      </button>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ) : (
